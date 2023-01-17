@@ -39,7 +39,7 @@ class KontactEx {
                     val contacts = MyContacts()
                     id = it.getLong(idIndex).toString()
                     name = it.getString(nameIndex)
-                    number = it.getString(numberIndex).replace(" ", "")
+                    number = it.getString(numberIndex).replace(" ", "").replace("-","")
 
                     contacts.contactId = id
                     contacts.contactName = name
