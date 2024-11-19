@@ -10,8 +10,8 @@ import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.amulyakhare.textdrawable.TextDrawable
-import java.util.*
+import com.deepakkumardk.kontactpickerlib.TextDrawable
+import java.util.Locale
 
 /**
  * Extension functions

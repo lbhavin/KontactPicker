@@ -76,9 +76,9 @@ class KontactEx {
             val isLargeUriEnable = KontactPickerUI.getPickerItem().getLargePhotoUri
             var photoUri: Uri? = null
             if (isUriEnable) {
-                photoUri = if (isLargeUriEnable)
+                photoUri = /*if (isLargeUriEnable)
                     getContactImageLargeUri(contact.contactId?.toLong()!!)
-                else
+                else*/
                     getContactImageUri(contact.contactId?.toLong()!!)
             }
 

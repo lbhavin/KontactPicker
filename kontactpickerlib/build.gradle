@@ -40,13 +40,13 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     implementation 'com.google.android.material:material:1.1.0'
-    implementation 'org.jetbrains.anko:anko-commons:0.10.8'
+//    implementation 'org.jetbrains.anko:anko-commons:0.10.8'
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     kapt 'com.github.bumptech.glide:compiler:4.10.0'
 
     implementation 'de.hdodenhof:circleimageview:3.0.1'
-    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+//    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
 }
 repositories {
     mavenCentral()
