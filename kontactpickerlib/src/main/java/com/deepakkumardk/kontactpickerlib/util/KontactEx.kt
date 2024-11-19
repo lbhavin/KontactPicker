@@ -39,7 +39,7 @@ class KontactEx {
                     val contacts = MyContacts()
                     id = it.getLong(idIndex).toString()
                     name = it.getString(nameIndex)
-                    number = it.getString(numberIndex).replace(" ", "")
+                    number = it.getString(numberIndex).replace(" ", "").replace("-","")
 
                     contacts.contactId = id
                     contacts.contactName = name
@@ -74,12 +74,12 @@ class KontactEx {
 
             val isUriEnable = KontactPickerUI.getPickerItem().includePhotoUri
             val isLargeUriEnable = KontactPickerUI.getPickerItem().getLargePhotoUri
-            var photoUri: Uri? = null
+            val photoUri: Uri? = null
             if (isUriEnable) {
-                photoUri = /*if (isLargeUriEnable)
-                    getContactImageLargeUri(contact.contactId?.toLong()!!)
-                else*/
-                    getContactImageUri(contact.contactId?.toLong()!!)
+//                photoUri = /*if (isLargeUriEnable)
+//                    getContactImageLargeUri(contact.contactId?.toLong()!!)
+//                else*/
+                getContactImageUri(contact.contactId?.toLong()!!)
             }
 
             contact.contactNumberList.forEach { number ->
