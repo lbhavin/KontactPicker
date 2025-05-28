@@ -13,6 +13,7 @@ data class MyContacts(
     var contactId: String? = null,
     var contactName: String? = null,
     var contactNumber: String? = null,
+    var email: String? = null,
     var isSelected: Boolean = false,
     var photoUri: Uri? = null,
     var contactNumberList: ArrayList<String> = arrayListOf()

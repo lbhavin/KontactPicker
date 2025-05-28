@@ -1,8 +1,9 @@
 package com.deepakkumardk.kontactpickerlib.util
 
-import android.app.Activity
+import android.content.Context
 import android.net.Uri
 import android.provider.ContactsContract
+import android.util.Log
 import com.deepakkumardk.kontactpickerlib.model.MyContacts
 import org.jetbrains.anko.doAsyncResult
 import org.jetbrains.anko.onComplete
@@ -13,7 +14,7 @@ import org.jetbrains.anko.onComplete
 
 class KontactEx {
 
-    fun getAllContacts(activity: Activity?, onCompleted: (MutableList<MyContacts>) -> Unit) {
+    fun getAllContacts(activity: Context?, onCompleted: (MutableList<MyContacts>) -> Unit) {
         val startTime = System.currentTimeMillis()
         val projection = arrayOf(
             ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
@@ -36,10 +37,11 @@ class KontactEx {
                 var name: String
                 var number: String
                 while (it.moveToNext()) {
+
                     val contacts = MyContacts()
                     id = it.getLong(idIndex).toString()
                     name = it.getString(nameIndex)
-                    number = it.getString(numberIndex).replace(" ", "").replace("-","")
+                    number = it.getString(numberIndex).replace(" ", "").replace("-", "")
 
                     contacts.contactId = id
                     contacts.contactName = name
@@ -53,6 +55,35 @@ class KontactEx {
                         contacts.contactNumberList = list
                     } else {
                         contactMap[id] = contacts
+                    }
+                }
+                it.close()
+            }
+            val emailProjection = arrayOf(
+                ContactsContract.CommonDataKinds.Email.CONTACT_ID,
+                ContactsContract.CommonDataKinds.Email.ADDRESS
+            )
+
+            // Second: Query emails
+            cr?.query(
+                ContactsContract.CommonDataKinds.Email.CONTENT_URI, emailProjection,
+                null, null, null
+            )?.use {
+                val idIndex = it.getColumnIndex(ContactsContract.CommonDataKinds.Email.CONTACT_ID)
+                val emailIndex = it.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS)
+
+                while (it.moveToNext()) {
+                    val id = it.getLong(idIndex).toString()
+                    val email = it.getString(emailIndex) ?: continue
+
+                    val contact = contactMap[id]
+                    if (contact != null) {
+//                        if (contact.email == null) {
+//                            contact.email = arrayListOf()
+//                        }
+//                        if (!contact.emails!!.contains(email)) {
+                            contact.email= email
+//                        }
                     }
                 }
                 it.close()
@@ -87,7 +118,7 @@ class KontactEx {
                     val newContact = MyContacts(
                         contact.contactId,
                         contact.contactName,
-                        number, false, photoUri,
+                        number, contact.email, false, photoUri,
                         contact.contactNumberList
                     )
                     myKontacts.add(newContact)

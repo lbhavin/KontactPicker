@@ -40,7 +40,7 @@ class ContactAdapter(private var contactsList: ArrayList<Contact>?) :
         fun bind(position: Int) {
             val contact = contactsList?.get(position)
             contactName.text = contact?.contactName
-            contactMobile.text = contact?.contactNumber
+            contactMobile.text = contact?.contactNumber+" "+contact?.email
 
             Glide.with(itemView.context)
                 .load(contact?.contactUri)

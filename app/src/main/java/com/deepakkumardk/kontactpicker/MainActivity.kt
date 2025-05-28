@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             binding.progressBar.hide()
             for (contact in it) {
                 myContacts?.add(
-                    Contact(contact.contactName, contact.contactNumber, contact.photoUri)
+                    Contact(contact.contactName, contact.contactNumber, contact.email, contact.photoUri)
                 )
             }
             contactsAdapter?.updateList(myContacts)
@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
             if (list != null) {
                 for (contact in list) {
                     myContacts?.add(
-                        Contact(contact.contactName, contact.contactNumber, contact.photoUri)
+                        Contact(contact.contactName, contact.contactNumber,contact.email, contact.photoUri)
                     )
                 }
             }

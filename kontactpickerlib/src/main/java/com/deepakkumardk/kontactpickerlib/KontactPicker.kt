@@ -1,6 +1,7 @@
 package com.deepakkumardk.kontactpickerlib
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.fragment.app.Fragment
 import com.deepakkumardk.kontactpickerlib.model.KontactPickerItem
@@ -66,7 +67,7 @@ class KontactPicker {
          * Get All contacts with name, phone number and photoUri
          */
         fun getAllKontactsWithUri(
-            activity: Activity?,
+            activity: Context?,
             getLargeUri: Boolean = false,
             onSuccess: (MutableList<MyContacts>) -> Unit
         ) {
